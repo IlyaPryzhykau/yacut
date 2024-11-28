@@ -1,7 +1,7 @@
 from random import choices
 import re
 
-from flask import abort, flash, redirect, render_template, url_for
+from flask import abort, flash, redirect, render_template
 
 from . import app, db
 from .forms import URLMapForm
@@ -46,7 +46,7 @@ def index_view():
         )
         db.session.add(urlmap)
         db.session.commit()
-        return render_template('urlmap.html', form=form,  urlmap=urlmap)
+        return render_template('urlmap.html', form=form, urlmap=urlmap)
     return render_template('urlmap.html', form=form)
 
 
