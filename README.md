@@ -30,21 +30,19 @@
    
 2. Перейдите в каталог проекта:
 
-
    ```bash
    cd yacut
    ```
 
 3. Создайте и активируйте виртуальное окружение:
 
-Для Linux/macOS:
-
+   Для Linux/macOS:
    ```bash
    python3 -m venv venv
    source venv/bin/activate
    ```
-Для Windows:
-
+   
+   Для Windows:
    ```bash
    python -m venv venv
    venv\Scripts\activate
