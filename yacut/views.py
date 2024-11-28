@@ -13,12 +13,13 @@ CHOICE_STRING = ('ABCDEFGHIJKLMNOPQRSTUVWXYZ'
                  '0123456789')
 
 VALID_SHORT_URL_PATTERN = re.compile(r'^[A-Za-z0-9]{1,16}$')
+MAX_LENGTH_OF_SHORT_URL = 6
 
 
 def get_unique_short_id():
     """Генерирует уникальный короткий идентификатор."""
     while True:
-        short_url = ''.join(choices(CHOICE_STRING, k=6))
+        short_url = ''.join(choices(CHOICE_STRING, k=MAX_LENGTH_OF_SHORT_URL))
         if URLMap.query.filter_by(short=short_url).first() is None:
             return short_url
 
@@ -53,8 +54,6 @@ def index_view():
 @app.route('/<string:short_url>', methods=['GET'])
 def redirect_view(short_url):
     """Перенаправляет пользователя на оригинальный URL."""
-    urlmap = URLMap.query.filter_by(short=short_url).first()
-    if urlmap is None:
-        abort(404)
+    urlmap = URLMap.query.filter_by(short=short_url).first_or_404()
     original_url = urlmap.original
     return redirect(original_url)
