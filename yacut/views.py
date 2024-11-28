@@ -1,7 +1,7 @@
 from random import choices
 import re
 
-from flask import abort, flash, redirect, render_template
+from flask import flash, redirect, render_template
 
 from . import app, db
 from .forms import URLMapForm
